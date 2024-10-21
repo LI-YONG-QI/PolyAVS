@@ -1,0 +1,362 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "SETTLE_LIVENESS",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "events",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "title",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "requestContent",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "proposeContent",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "createAt",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "proposeAt",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "settleAt",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "proposer",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "status",
+        "type": "uint8",
+        "internalType": "enum IOracleCore.Status"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "propose",
+    "inputs": [
+      {
+        "name": "_event",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.Event",
+        "components": [
+          {
+            "name": "title",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "requestContent",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "proposeContent",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "createAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "proposeAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "settleAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "creator",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "proposer",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IOracleCore.Status"
+          }
+        ]
+      },
+      {
+        "name": "data",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "proposer",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "request",
+    "inputs": [
+      {
+        "name": "_title",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "_requestContent",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "_creator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "settle",
+    "inputs": [
+      {
+        "name": "_event",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.Event",
+        "components": [
+          {
+            "name": "title",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "requestContent",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "proposeContent",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "createAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "proposeAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "settleAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "creator",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "proposer",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IOracleCore.Status"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "ProposeEvent",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "proposer",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "proposeContent",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      },
+      {
+        "name": "time",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RequestEvent",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "requestContent",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      },
+      {
+        "name": "time",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "SettleEvent",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "settleTime",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "requestContent",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      },
+      {
+        "name": "proposeContent",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "error",
+    "name": "EventAlreadyExists",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EventNotFound",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EventNotSettle",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "EventStatusInvalid",
+    "inputs": [
+      {
+        "name": "expect",
+        "type": "uint8",
+        "internalType": "enum IOracleCore.Status"
+      },
+      {
+        "name": "current",
+        "type": "uint8",
+        "internalType": "enum IOracleCore.Status"
+      }
+    ]
+  }
+]

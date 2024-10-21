@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "cd contracts && forge build"
+    "build": "cd contracts && forge build",
+    "start:operator": "ts-node operator/main.ts",
+    "send": "ts-node operator/tx.ts",
+    "deploy:oracle": "cd contracts && forge script script/OracleCore.s.sol --rpc-url http://localhost:8545 --broadcast"
   },
   "keywords": [],
   "author": "",
