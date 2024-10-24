@@ -7,5 +7,6 @@ libs = ["lib"]
 
 remappings = [
     "forge-std/=lib/forge-std/src/",
-    "@eigenlayer-middleware/=lib/eigenlayer-middleware/"
+    "@eigenlayer-middleware/=lib/eigenlayer-middleware/",
+    "eigenlayer-middleware/=lib/eigenlayer-middleware/src/",
 ]
