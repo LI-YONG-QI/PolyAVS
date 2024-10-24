@@ -9,4 +9,6 @@ remappings = [
     "forge-std/=lib/forge-std/src/",
     "@eigenlayer-middleware/=lib/eigenlayer-middleware/",
     "eigenlayer-middleware/=lib/eigenlayer-middleware/src/",
+    "openzeppelin-contracts/=lib/eigenlayer-middleware/lib/openzeppelin-contracts/",
+    "@openzeppelin-upgrades/=lib/eigenlayer-contracts/lib/openzeppelin-contracts-upgradeable/"
 ]

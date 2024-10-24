@@ -7,11 +7,12 @@ import {
   stringToHex,
 } from "viem";
 import { anvil } from "viem/chains";
-import * as dotenv from "dotenv";
+
 import { privateKeyToAccount } from "viem/accounts";
+
+require("dotenv").config();
 const fs = require("fs");
 const path = require("path");
-dotenv.config();
 
 const oracleCoreABI = JSON.parse(
   fs.readFileSync(path.resolve(__dirname, "../abis/OracleCore.json"), "utf8")
@@ -37,7 +38,7 @@ const oracle = getContract({
 });
 
 export const requestEvent = async () => {
-  const response = await oracle.write.request([
+  await oracle.write.request([
     "test",
     stringToHex("This is Test event"),
     walletClient.account.address,

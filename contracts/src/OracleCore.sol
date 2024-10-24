@@ -3,16 +3,20 @@ pragma solidity ^0.8.20;
 
 import {IOracleCore} from "./IOracleCore.sol";
 import {EventLib} from "./libraries/EventLib.sol";
-import {ECDSAServiceManagerBase} from "@eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol";
+//import {ECDSAServiceManagerBase} from "eigenlayer-middleware/unaudited/ECDSAServiceManagerBase.sol";
+import {ECDSA} from "openzeppelin-contracts/contracts/utils/cryptography/ECDSA.sol";
 
 contract OracleCore is IOracleCore {
     using EventLib for Event;
+    using ECDSA for bytes32;
 
     mapping(bytes32 id => Event) public events;
 
     uint256 public constant SETTLE_LIVENESS = 10 minutes;
 
-    constructor() {}
+    // constructor(address _avsDirectory, address _stakeRegistry, address _rewardsCoordinator, address _delegationManager)
+    //     ECDSAServiceManagerBase(_avsDirectory, _stakeRegistry, _rewardsCoordinator, _delegationManager)
+    // {}
 
     function request(string calldata _title, bytes calldata _requestContent, address _creator)
         external
