@@ -2,7 +2,8 @@
 pragma solidity ^0.8.20;
 
 import {IOracleCore} from "./IOracleCore.sol";
-import {EventLib} from "./libs/EventLib.sol";
+import {EventLib} from "./libraries/EventLib.sol";
+import {ECDSAServiceManagerBase} from "@eigenlayer-middleware/src/unaudited/ECDSAServiceManagerBase.sol";
 
 contract OracleCore is IOracleCore {
     using EventLib for Event;
