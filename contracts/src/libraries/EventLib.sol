@@ -4,7 +4,15 @@ pragma solidity ^0.8.20;
 import {IOracleCore} from "../IOracleCore.sol";
 
 library EventLib {
-    function toId(IOracleCore.Event memory _event) internal pure returns (bytes32) {
-        return keccak256(abi.encodePacked(_event.title, _event.requestContent, _event.createAt, _event.creator));
+    function toId(
+        string memory title,
+        IOracleCore.EventData memory request
+    ) internal pure returns (bytes32) {
+        return
+            keccak256(abi.encodePacked(title, request.content, request.createAt, request.creator));
+    }
+
+    function toId(IOracleCore.Event memory e) internal pure returns (bytes32) {
+        return toId(e.title, e.request);
     }
 }
