@@ -114,6 +114,8 @@ contract OracleCore is IOracleCore, ECDSAServiceManagerBase {
         _checkEventValid(id, Status.DISPUTED);
         _checkSignature(getDigest(_event), signatureData);
 
+        //TODO Slash mechanism
+
         settle(_event);
     }
 
@@ -127,7 +129,7 @@ contract OracleCore is IOracleCore, ECDSAServiceManagerBase {
 
     // INTERNAL FUNCTIONS
 
-    function _checkSignature(bytes32 _hash, bytes memory _signaturesData) internal pure {
+    function _checkSignature(bytes32 _hash, bytes memory _signaturesData) internal view {
         ECDSAStakeRegistry(stakeRegistry).isValidSignature(_hash, _signaturesData);
     }
 
@@ -136,7 +138,7 @@ contract OracleCore is IOracleCore, ECDSAServiceManagerBase {
         if (events[id].status != _expect) revert EventStatusInvalid(_expect, events[id].status);
     }
 
-    function _checkLiveness(uint256 _settleAt, uint256 _proposeAt) internal pure {
+    function _checkLiveness(uint256 _settleAt, uint256 _proposeAt) internal view {
         if (_settleAt - _proposeAt < SETTLE_LIVENESS) revert EventNotSettle();
     }
 }

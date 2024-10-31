@@ -62,20 +62,11 @@ interface IOracleCore {
 
     function propose(Event memory _event, bytes calldata data, address proposer) external;
 
-    function settle(
-        Event memory _event,
-        bytes memory signature,
-        bytes32 salt,
-        uint256 expire
-    ) external;
+    function settle(Event memory _event) external;
 
-    function dispute(bytes32 id, bytes calldata data) external;
+    function dispute(Event memory _event, bytes calldata disputeData) external;
 
-    function resolve(bytes32 id, bytes calldata data) external;
+    function resolve(Event memory _event, bytes memory signatureData) external;
 
-    function getDigest(
-        Event memory _event,
-        bytes32 salt,
-        uint256 expiry
-    ) external view returns (bytes32);
+    function getDigest(Event memory _event) external pure returns (bytes32);
 }

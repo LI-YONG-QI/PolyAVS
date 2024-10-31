@@ -1,7 +1,28 @@
 [
   {
     "type": "constructor",
-    "inputs": [],
+    "inputs": [
+      {
+        "name": "_avsDirectory",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_stakeRegistry",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_rewardsCoordinator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "_delegationManager",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
     "stateMutability": "nonpayable"
   },
   {
@@ -13,6 +34,187 @@
         "name": "",
         "type": "uint256",
         "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "avsDirectory",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "createAVSRewardsSubmission",
+    "inputs": [
+      {
+        "name": "rewardsSubmissions",
+        "type": "tuple[]",
+        "internalType": "struct IRewardsCoordinator.RewardsSubmission[]",
+        "components": [
+          {
+            "name": "strategiesAndMultipliers",
+            "type": "tuple[]",
+            "internalType": "struct IRewardsCoordinator.StrategyAndMultiplier[]",
+            "components": [
+              {
+                "name": "strategy",
+                "type": "address",
+                "internalType": "contract IStrategy"
+              },
+              {
+                "name": "multiplier",
+                "type": "uint96",
+                "internalType": "uint96"
+              }
+            ]
+          },
+          {
+            "name": "token",
+            "type": "address",
+            "internalType": "contract IERC20"
+          },
+          {
+            "name": "amount",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "startTimestamp",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "duration",
+            "type": "uint32",
+            "internalType": "uint32"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "deregisterOperatorFromAVS",
+    "inputs": [
+      {
+        "name": "operator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "dispute",
+    "inputs": [
+      {
+        "name": "_event",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.Event",
+        "components": [
+          {
+            "name": "title",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "request",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "proposed",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IOracleCore.Status"
+          }
+        ]
+      },
+      {
+        "name": "disputeData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "disputingEvents",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "content",
+        "type": "bytes",
+        "internalType": "bytes"
+      },
+      {
+        "name": "createAt",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "creator",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "stateMutability": "view"
@@ -34,44 +236,173 @@
         "internalType": "string"
       },
       {
-        "name": "requestContent",
-        "type": "bytes",
-        "internalType": "bytes"
+        "name": "request",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.EventData",
+        "components": [
+          {
+            "name": "content",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "createAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "creator",
+            "type": "address",
+            "internalType": "address"
+          }
+        ]
       },
       {
-        "name": "proposeContent",
-        "type": "bytes",
-        "internalType": "bytes"
-      },
-      {
-        "name": "createAt",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "proposeAt",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "settleAt",
-        "type": "uint256",
-        "internalType": "uint256"
-      },
-      {
-        "name": "creator",
-        "type": "address",
-        "internalType": "address"
-      },
-      {
-        "name": "proposer",
-        "type": "address",
-        "internalType": "address"
+        "name": "proposed",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.EventData",
+        "components": [
+          {
+            "name": "content",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "createAt",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "creator",
+            "type": "address",
+            "internalType": "address"
+          }
+        ]
       },
       {
         "name": "status",
         "type": "uint8",
         "internalType": "enum IOracleCore.Status"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getDigest",
+    "inputs": [
+      {
+        "name": "_event",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.Event",
+        "components": [
+          {
+            "name": "title",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "request",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "proposed",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IOracleCore.Status"
+          }
+        ]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32",
+        "internalType": "bytes32"
+      }
+    ],
+    "stateMutability": "pure"
+  },
+  {
+    "type": "function",
+    "name": "getOperatorRestakedStrategies",
+    "inputs": [
+      {
+        "name": "_operator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getRestakeableStrategies",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]",
+        "internalType": "address[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "owner",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
       }
     ],
     "stateMutability": "view"
@@ -91,39 +422,48 @@
             "internalType": "string"
           },
           {
-            "name": "requestContent",
-            "type": "bytes",
-            "internalType": "bytes"
+            "name": "request",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
           },
           {
-            "name": "proposeContent",
-            "type": "bytes",
-            "internalType": "bytes"
-          },
-          {
-            "name": "createAt",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "proposeAt",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "settleAt",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "creator",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "proposer",
-            "type": "address",
-            "internalType": "address"
+            "name": "proposed",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
           },
           {
             "name": "status",
@@ -148,6 +488,48 @@
   },
   {
     "type": "function",
+    "name": "registerOperatorToAVS",
+    "inputs": [
+      {
+        "name": "operator",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "operatorSignature",
+        "type": "tuple",
+        "internalType": "struct ISignatureUtils.SignatureWithSaltAndExpiry",
+        "components": [
+          {
+            "name": "signature",
+            "type": "bytes",
+            "internalType": "bytes"
+          },
+          {
+            "name": "salt",
+            "type": "bytes32",
+            "internalType": "bytes32"
+          },
+          {
+            "name": "expiry",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "renounceOwnership",
+    "inputs": [],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "request",
     "inputs": [
       {
@@ -161,7 +543,7 @@
         "internalType": "bytes"
       },
       {
-        "name": "_creator",
+        "name": "_requestor",
         "type": "address",
         "internalType": "address"
       }
@@ -173,6 +555,106 @@
         "internalType": "bytes32"
       }
     ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "resolve",
+    "inputs": [
+      {
+        "name": "_event",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.Event",
+        "components": [
+          {
+            "name": "title",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "request",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "proposed",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IOracleCore.Status"
+          }
+        ]
+      },
+      {
+        "name": "signatureData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "rewardsInitiator",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "setRewardsInitiator",
+    "inputs": [
+      {
+        "name": "newRewardsInitiator",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
     "stateMutability": "nonpayable"
   },
   {
@@ -190,39 +672,48 @@
             "internalType": "string"
           },
           {
-            "name": "requestContent",
-            "type": "bytes",
-            "internalType": "bytes"
+            "name": "request",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
           },
           {
-            "name": "proposeContent",
-            "type": "bytes",
-            "internalType": "bytes"
-          },
-          {
-            "name": "createAt",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "proposeAt",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "settleAt",
-            "type": "uint256",
-            "internalType": "uint256"
-          },
-          {
-            "name": "creator",
-            "type": "address",
-            "internalType": "address"
-          },
-          {
-            "name": "proposer",
-            "type": "address",
-            "internalType": "address"
+            "name": "proposed",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
           },
           {
             "name": "status",
@@ -234,6 +725,182 @@
     ],
     "outputs": [],
     "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "stakeRegistry",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "transferOwnership",
+    "inputs": [
+      {
+        "name": "newOwner",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "updateAVSMetadataURI",
+    "inputs": [
+      {
+        "name": "_metadataURI",
+        "type": "string",
+        "internalType": "string"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "verifyProposed",
+    "inputs": [
+      {
+        "name": "_event",
+        "type": "tuple",
+        "internalType": "struct IOracleCore.Event",
+        "components": [
+          {
+            "name": "title",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "request",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "proposed",
+            "type": "tuple",
+            "internalType": "struct IOracleCore.EventData",
+            "components": [
+              {
+                "name": "content",
+                "type": "bytes",
+                "internalType": "bytes"
+              },
+              {
+                "name": "createAt",
+                "type": "uint256",
+                "internalType": "uint256"
+              },
+              {
+                "name": "creator",
+                "type": "address",
+                "internalType": "address"
+              }
+            ]
+          },
+          {
+            "name": "status",
+            "type": "uint8",
+            "internalType": "enum IOracleCore.Status"
+          }
+        ]
+      },
+      {
+        "name": "signatureData",
+        "type": "bytes",
+        "internalType": "bytes"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "event",
+    "name": "DisputeEvent",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
+        "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "disputer",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "disputeContent",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      },
+      {
+        "name": "time",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "Initialized",
+    "inputs": [
+      {
+        "name": "version",
+        "type": "uint8",
+        "indexed": false,
+        "internalType": "uint8"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "OwnershipTransferred",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
   },
   {
     "type": "event",
@@ -283,6 +950,12 @@
         "internalType": "address"
       },
       {
+        "name": "title",
+        "type": "string",
+        "indexed": true,
+        "internalType": "string"
+      },
+      {
         "name": "requestContent",
         "type": "bytes",
         "indexed": false,
@@ -293,6 +966,25 @@
         "type": "uint256",
         "indexed": false,
         "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "RewardsInitiatorUpdated",
+    "inputs": [
+      {
+        "name": "prevRewardsInitiator",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "newRewardsInitiator",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
       }
     ],
     "anonymous": false
@@ -310,7 +1002,38 @@
       {
         "name": "settleTime",
         "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "requestContent",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      },
+      {
+        "name": "proposeContent",
+        "type": "bytes",
+        "indexed": false,
+        "internalType": "bytes"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "VerifyEvent",
+    "inputs": [
+      {
+        "name": "id",
+        "type": "bytes32",
         "indexed": true,
+        "internalType": "bytes32"
+      },
+      {
+        "name": "verifyTime",
+        "type": "uint256",
+        "indexed": false,
         "internalType": "uint256"
       },
       {

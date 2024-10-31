@@ -25,7 +25,7 @@ contract OracleCoreTest is Test {
 
     address public constant SIGNER = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
 
-    uint256 _signerPrivateKey = 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80;
+    uint256 mockPK = 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80;
     address _avsDirectory = 0x135DDa560e946695d6f155dACaFC6f1F25C1F5AF;
     address _delegationManager = 0x39053D51B77DC0d36036Fc1fCc8Cb819df8Ef37A;
 
@@ -36,7 +36,8 @@ contract OracleCoreTest is Test {
 
     function setUp() external {
         vm.createSelectFork(vm.envString("MAINNET_RPC_URL"));
-        address signer = vm.addr(_signerPrivateKey);
+        address signer = vm.addr(mockPK);
+
         vm.startPrank(signer);
 
         quorum.strategies.push(
@@ -60,6 +61,8 @@ contract OracleCoreTest is Test {
 
         _registerOperator();
         vm.stopPrank();
+
+        _registerOperatorToAVS();
     }
 
     function _registerOperator() internal {
@@ -75,13 +78,13 @@ contract OracleCoreTest is Test {
         assertEq(delegationManager.isOperator(SIGNER), true);
     }
 
-    function test_registerOperatorToAVS() external {
+    function _registerOperatorToAVS() internal {
         uint256 expiry = block.timestamp + 10_000;
         bytes32 digest = IAVSDirectory(_avsDirectory).calculateOperatorAVSRegistrationDigestHash(
             SIGNER, address(oracle), 0, expiry
         );
 
-        (uint8 v, bytes32 r, bytes32 s) = vm.sign(_signerPrivateKey, digest);
+        (uint8 v, bytes32 r, bytes32 s) = vm.sign(mockPK, digest);
         bytes memory signature = abi.encodePacked(r, s, v);
 
         ISignatureUtils.SignatureWithSaltAndExpiry memory operatorSignature = ISignatureUtils
@@ -91,5 +94,9 @@ contract OracleCoreTest is Test {
         vm.startPrank(SIGNER);
         stakeRegistry.registerOperatorWithSignature(operatorSignature, SIGNER);
         vm.stopPrank();
+    }
+
+    function test_HelloWorld() external {
+        console.log("First test");
     }
 }
